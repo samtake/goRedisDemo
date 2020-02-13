@@ -7,5 +7,5 @@ import (
 
 func main() {
 	fmt.Println("main function")
-	handler.UploadHandler()
+	handler.UploadHandlerRedis()
 }
