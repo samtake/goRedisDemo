@@ -2,31 +2,22 @@ package handler
 
 import (
 	"encoding/json"
-	"filestore-server/mq"
-	"fmt"
-	"io"
-	"io/ioutil"
-	"net/http"
-	"os"
-	"strconv"
-	"strings"
-	"time"
-	cfg "goRedisDemo/config"
+	mq "goRedisDemo/mq"
 )
 
-// UploadHandler ： 
-func UploadHandler() {
+// UploadHandler ：
+func UploadHandlerMQ() {
 	// 写入异步转移任务队列
 	data := mq.TransferData{
-		FileHash:      fileMeta.FileSha1,
-		CurLocation:   fileMeta.Location,
-		DestLocation:  ossPath,
-		DestStoreType: cmn.StoreOSS,
+		FileHash:     "fileMeta.FileSha1",
+		CurLocation:  "fileMeta.Location",
+		DestLocation: "ossPath",
+		// DestStoreType: cmn.StoreOSS,
 	}
 	pubData, _ := json.Marshal(data)
 	pubSuc := mq.Publish(
-		cfg.TransExchangeName,
-		cfg.TransOSSRoutingKey,
+		"cfg.TransExchangeName",
+		"cfg.TransOSSRoutingKey",
 		pubData,
 	)
 	if !pubSuc {

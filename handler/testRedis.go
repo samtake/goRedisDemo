@@ -10,7 +10,6 @@ func UploadHandler() {
 	defer rConn.Close()
 
 	// 将初信息写入到redis缓存
-	rConn.Do("sadd","set","uploadHandler")
-
+	rConn.Do("sadd", "set", "uploadHandler")
 
 }

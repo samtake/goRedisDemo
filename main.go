@@ -6,6 +6,9 @@ import (
 )
 
 func main() {
-	fmt.Println("main function")
-	handler.UploadHandlerRedis()
+	// fmt.Println("test Redis")
+	// handler.UploadHandler()
+
+	fmt.Println("test mySQL ")
+	handler.UploadHandlerDB()
 }
